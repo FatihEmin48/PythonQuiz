@@ -1,0 +1,50 @@
+<!-- templates/quiz.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Python Quiz</h2>
+
+{% if questions %}
+<form method="POST" action="{{ url_for('submit_quiz') }}">
+    {% for question in questions %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Soru {{ loop.index }}: {{ question.topic }}</h5>
+        </div>
+        <div class="card-body">
+            <p>{{ question.question_text }}</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_a_{{ question.id }}" value="a" required>
+                <label class="form-check-label" for="option_a_{{ question.id }}">
+                    {{ question.option_a }}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_b_{{ question.id }}" value="b">
+                <label class="form-check-label" for="option_b_{{ question.id }}">
+                    {{ question.option_b }}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_c_{{ question.id }}" value="c">
+                <label class="form-check-label" for="option_c_{{ question.id }}">
+                    {{ question.option_c }}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_d_{{ question.id }}" value="d">
+                <label class="form-check-label" for="option_d_{{ question.id }}">
+                    {{ question.option_d }}
+                </label>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Quiz'i Tamamla</button>
+</form>
+{% else %}
+<div class="alert alert-warning">
+    Şu anda veritabanında hiç soru bulunmuyor. Lütfen yöneticinize bildirin veya <a href="{{ url_for('initialize_db') }}">buraya tıklayarak</a> veritabanını başlatın.
+</div>
+{% endif %}
+{% endblock %}

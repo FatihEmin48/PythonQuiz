@@ -1,0 +1,39 @@
+<!-- templates/results.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Quiz Sonuçları</h2>
+    </div>
+    <div class="card-body">
+        <h3>Puanınız: {{ score }}/{{ total }}</h3>
+        <p>En yüksek puanınız: {{ user_highest }}</p>
+        
+        {% if score == total %}
+            <div class="alert alert-success">
+                <h4>Mükemmel puan! Tebrikler!</h4>
+                <p>Bu quizdeki tüm Python konularında ustalaşmışsınız!</p>
+            </div>
+        {% elif score >= total * 0.8 %}
+            <div class="alert alert-success">
+                <h4>Harika iş!</h4>
+                <p>Python konularında iyi bir anlayışa sahipsiniz.</p>
+            </div>
+        {% elif score >= total * 0.5 %}
+            <div class="alert alert-warning">
+                <h4>İyi çaba!</h4>
+                <p>Python'da ustalaşma yolundasınız.</p>
+            </div>
+        {% else %}
+            <div class="alert alert-danger">
+                <h4>Öğrenmeye devam edin!</h4>
+                <p>Konuları gözden geçirin ve tekrar deneyin.</p>
+            </div>
+        {% endif %}
+        
+        <a href="{{ url_for('quiz') }}" class="btn btn-primary">Quiz'i Tekrar Dene</a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Ana Sayfaya Dön</a>
+    </div>
+</div>
+{% endblock %}

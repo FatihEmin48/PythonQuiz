@@ -1,0 +1,63 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <h1 class="display-4">Python Quiz'e Hoş Geldiniz!</h1>
+    <p class="lead">Python kütüphaneleri hakkında bilginizi test edin: chatbot otomasyonu, web geliştirme, yapay zeka, bilgisayarlı görü ve doğal dil işleme.</p>
+    <hr class="my-4">
+    <p>Bu quiz, çeşitli Python konularını kapsayan 5 sorudan oluşmaktadır.</p>
+    {% if 'user_id' in session %}
+        <a class="btn btn-primary btn-lg" href="{{ url_for('quiz') }}" role="button">Quiz'e Başla</a>
+    {% else %}
+        <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Giriş Yap</a>
+        <a class="btn btn-outline-secondary btn-lg" href="{{ url_for('register') }}" role="button">Kayıt Ol</a>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Chatbot Otomasyonu</h5>
+                <p class="card-text">Discord.py ve chatbot oluşturmak için diğer Python kütüphaneleri hakkında bilgi edinin.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Web Geliştirme</h5>
+                <p class="card-text">Flask ve diğer Python web çatılarını keşfedin.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Yapay Zeka</h5>
+                <p class="card-text">Python'un güçlü yapay zeka kütüphanelerini ve çatılarını keşfedin.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Bilgisayarlı Görü</h5>
+                <p class="card-text">TensorFlow, ImageAI ve diğer CV kütüphaneleri hakkında bilgi edinin.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Doğal Dil İşleme</h5>
+                <p class="card-text">BeautifulSoup, NLTK ve diğer NLP araçlarını keşfedin.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
